@@ -4,6 +4,7 @@ import cz.czechitas.java2webapps.ukol8.service.PostService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -21,10 +22,9 @@ public class PostController {
                 .addObject("seznam", postService.findByPublishedBeforeAndPublishedNotNull());
     }
 
-    @GetMapping(path = "/", params = "slug")
-    public ModelAndView detail(String slug) {
-        ModelAndView result = new ModelAndView("detail");
-        result.addObject("seznam", postService.singlePost(slug, Pageable.unpaged()));
-        return result;
+    @GetMapping(path="/post/{slug}")
+    public ModelAndView detail(@PathVariable String slug) {
+        return new ModelAndView("detail")
+                .addObject("post", postService.singlePost(slug));
     }
 }

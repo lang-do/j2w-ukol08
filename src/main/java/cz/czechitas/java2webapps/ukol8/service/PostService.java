@@ -22,8 +22,8 @@ public class PostService {
         return postRepository.findAll(page);
     }
 
-    public Page<Post> singlePost(String slug, Pageable pageable) {
-        return postRepository.findBySlug(slug, Pageable.unpaged());
+    public Post singlePost(String slug) {
+        return postRepository.findBySlug(slug);
     }
 
     public Page<Post> findByPublishedBeforeAndPublishedNotNull() {

@@ -23,7 +23,7 @@
         </thead>
         <tbody>
         <tr th:each="post: ${seznam}">
-            <td><a href="/detail" th:href="@{/(slug=${post.slug})}"> detail</a></td>
+            <td><a th:href="@{/post/{slug}(slug=${post.slug})}"> detail</a></td>
             <td th:text="${post.author}">Author</td>
             <td th:text="${post.title}">Title</td>
             <td th:utext="${post.perex}">Perex</td>

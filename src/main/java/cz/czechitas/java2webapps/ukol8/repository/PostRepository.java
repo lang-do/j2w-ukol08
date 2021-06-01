@@ -8,14 +8,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-//import java.awt.print.Pageable;
 import java.time.LocalDate;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-    Pageable ownPage = (Pageable) PageRequest.of(0, 20, Sort.by("published").descending());
+    Pageable ownPage = PageRequest.of(0, 20, Sort.by("published").descending());
 
-    Page<Post> findBySlug(String slug, Pageable pageable);
+    Post findBySlug(String slug);
 
     Page<Post> findByPublishedBetweenAndPublishedNotNull(LocalDate dateOd, LocalDate dateDo, Pageable ownPage);
 
